@@ -1,0 +1,17 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "GfWscetsGjgeY7zt",
+    "database": "postgres",
+    "host": "affluently-able-rockling.data-1.apse1.tembo.io",
+    "dialect": "postgres",
+    "port": "5432",
+    "dialectOptions": {
+      "connectTimeout": 60000,
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
+  }
+}
