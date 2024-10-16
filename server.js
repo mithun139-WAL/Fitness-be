@@ -17,10 +17,12 @@ app.use(bodyParser.json());
 
 const logRoutes = require("./routes/logRoutes");
 const userRoutes = require("./routes/userRoutes");
+const sampleRoute = require("./routes/sampleRoute");
 app.use("/api", logRoutes);
 app.use("/api/user", userRoutes);
+app.use("/", sampleRoute);
 
-const PORT = process.env.PORT || 8005;
+const PORT = 8005;
 
 const startServer = async () => {
   await connectPostgres();
