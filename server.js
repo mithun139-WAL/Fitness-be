@@ -14,6 +14,7 @@ const app = express();
 
 app.use(corsMiddleware);
 app.use(bodyParser.json());
+app.use(express.json()); 
 
 const logRoutes = require("./routes/logRoutes");
 const userRoutes = require("./routes/userRoutes");
