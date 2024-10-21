@@ -1,4 +1,4 @@
-const { Expo } = require('expo-server-sdk');
+const { Expo } = require("expo-server-sdk");
 
 let pushTokens = [];
 
@@ -15,25 +15,30 @@ const registerToken = (req, res) => {
 };
 
 const sendPushNotifications = async () => {
-  const messages = pushTokens.map(token => ({
-    to: token,
-    sound: 'default',
-    title: 'Reminder!',
-    body: 'Do not forget to check your workouts!',
-    data: { someData: 'goes here' },
-  }));
-
-  const expo = new Expo();
-  const chunks = expo.chunkPushNotifications(messages);
-  for (const chunk of chunks) {
-    try {
-      let receipts = await expo.sendPushNotificationsAsync(chunk);
-      res.json(receipts);
-    } catch (error) {
-      console.error("Error sending notification:", error);
+    const messages = pushTokens.map((token) => ({
+      to: token,
+      sound: "default",
+      title: "Reminder!",
+      body: "Do not forget to check your workouts!",
+      data: { someData: "goes here" },
+    }));
+  
+    const expo = new Expo();
+    const chunks = expo.chunkPushNotifications(messages);
+  
+    const allReceipts = [];
+  
+    for (const chunk of chunks) {
+      try {
+        let receipts = await expo.sendPushNotificationsAsync(chunk);
+        allReceipts.push(...receipts);
+      } catch (error) {
+        console.error("Error sending notification:", error);
+      }
     }
-  }
-};
+  
+    return allReceipts;
+  };
 
 module.exports = {
   registerToken,
