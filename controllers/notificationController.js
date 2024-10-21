@@ -19,7 +19,7 @@ const sendPushNotifications = async () => {
     to: token,
     sound: 'default',
     title: 'Reminder!',
-    body: 'Don’t forget to check your workouts!',
+    body: 'Do not forget to check your workouts!',
     data: { someData: 'goes here' },
   }));
 
