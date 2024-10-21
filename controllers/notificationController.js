@@ -7,10 +7,10 @@ const registerToken = (req, res) => {
   if (Expo.isExpoPushToken(token)) {
     pushTokens.push(token);
     console.log(`Token registered: ${token}`);
-    return res.sendStatus(200);
+    return res.status(200).json({ message: 'Token registered successfully' });
   } else {
     console.error(`Invalid Expo push token: ${token}`);
-    return res.sendStatus(400);
+    return res.status(400).json({ error: 'Invalid Expo push token' });
   }
 };
 
